@@ -1,0 +1,46 @@
+# These commands should be run in the terminal under the directory where images are stored
+
+# Create a list of image names
+
+ls 27788*p.fits > file_list.txt
+
+# Create a raw list with the names raw1*.fits
+# To do so, run the following and change 130 to however many frames you have
+
+seq -w 101 130 | awk '{print "raw" $1 ".fits"}' > raw.list
+
+# Create and run generate_extraction.sh to create extraction.cl
+# Creating extraction.cl to align the images where [-*,-*] re-orients the images to North up and East left respectively. [4] is extracting the data of 4th CCD.
+# Note: the directory should only contain the fits images for this step
+
+#!/bin/bash
+
+counter=101
+while IFS= read -r file; do
+  echo "imcopy $file[4][-*,-*] raw$counter**" >> extraction.cl
+  ((counter++))
+done < <(ls)
+
+# Optionally, you can specify a folder path:
+# while IFS= read -r file; do
+#   echo "imcopy $file[4][-*,-*] raw$counter**" >> extraction.cl
+#   ((counter++))
+# done < <(ls /path/to/your/folder)
+
+# And then run:
+chmod +x generate_extraction.sh
+./generate_extraction.sh
+
+
+# This should return a list that looks something like this:
+
+imcopy 27781p.fits[4][-*,-*] raw101
+imcopy 27782p.fits[4][-*,-*] raw102
+imcopy 27783p.fits[4][-*,-*] raw103
+imcopy 27784p.fits[4][-*,-*] raw104
+
+# Run extraction.cl in IRAF
+
+
+
+
