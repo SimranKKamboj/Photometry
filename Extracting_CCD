@@ -10,7 +10,7 @@ ls 27788*p.fits > file_list.txt
 seq -w 101 130 | awk '{print "raw" $1 ".fits"}' > raw.list
 
 # Create and run generate_extraction.sh to create extraction.cl
-# Creating extraction.cl to align the images where [-*,-*] re-orients the images to North up and East left respectively. [4] is extracting the data of 4th CCD.
+# Creating extraction.cl to rotate the images where [-*,-*] re-orients the images to North up and East left respectively. [4] is extracting the data of 4th CCD.
 # Note: the directory should only contain the fits images for this step
 
 #!/bin/bash
