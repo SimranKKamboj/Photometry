@@ -1,0 +1,16 @@
+# Create a .cl file for psfmeasure using:
+
+for ((i=101; i<=137; i++)); do echo "psfmeasure a$i"; done > psfmeasure.cl
+
+# Run obsutil in IRAF and run epar on psfmeasure if changes are required (change size to GFWHM)
+
+# Store star coordinate/object coordinate for which you need the seeing in one.star
+# add that to epar psfmeasure input coordinates file
+
+# Run in IRAF:
+cl<psfmeasure.cl >psf.txt
+
+# Run in terminal (case sensitive):
+grep 'Full widith at half maximum (GFWHM) of' psf.txt | awk '{print $NF}' >> star1_seeing.txt
+
+
