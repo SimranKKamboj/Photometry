@@ -1,0 +1,155 @@
+# Do a myload.cl:
+
+# By Brett Gladman
+#
+#  myload.cl  
+#
+#   Loads images with common names
+#
+#  Fill option commented out Mar 10/98
+
+procedure myload(common)
+
+        string common {"", prompt=" Common portion of filename "}
+
+begin 
+        int    nimg , firstimg, currframe, fllflg
+        string infile,rootword
+
+        print(" ")
+        print(" ") 
+        print(" Welcome to MY LOADing program ")
+        print(" ") 
+        rootword = common
+        print(" first image to load : ") 
+        scan(firstimg)
+        print(" # of images to load : ") 
+        scan(nimg)
+        fllflg = 0
+#       print(" Fill ? (1-yes 0-no) : ") 
+#       scan(fllflg)
+# BG commented out (I NEVER used this!)
+        fllflg=0
+
+        print(" ") 
+        print(" Loading files: ")
+        print(" ") 
+        for (i=firstimg; i<=nimg+firstimg-1; i+=1)
+        {
+                currframe = i - firstimg + 1
+                infile = rootword//i
+                print(" Currently loading ",infile," into frame ", currframe)
+
+                if(currframe < 20) 
+                  if(fllflg == 1) 
+                        display(infile,currframe,fill+) 
+                  else
+                        display(infile,currframe,fill-)
+                else
+                  if(fllflg == 1) 
+                        display(infile,4,fill+) 
+                  else
+                        display(infile,20,fill-)
+        }
+
+end
+
+# Do an imexam on TNO using "," and do it for each frame since the TNO is a moving object
+# Paste it to tno.txt
+
+# Strip the first two columns using tno_imexam_to_coord.py:
+# Open the text file for reading
+with open('tno.txt', 'r') as file:
+    lines = file.readlines()
+
+# Initialize a list to store the first two columns from each line
+columns = []
+
+# Iterate through the lines in the file
+for line in lines:
+    # Split the line into columns based on whitespace
+    columns_data = line.strip().split()
+    
+    # Take only the first two columns if available
+    if len(columns_data) >= 2:
+        first_two_columns = columns_data[:2]
+        columns.append(first_two_columns)
+
+# Print the first two columns from each line
+for column_pair in columns:
+    print("\t".join(column_pair))  # Separate the columns with a tab or another delimiter if needed
+
+# OR 
+
+# tno_coord_script.py:
+
+# Open the text file for reading
+#with open('tno_a', 'r') as file:
+ 
+#   lines = file.readlines()
+
+# Initialize a list to store the odd-numbered lines
+#odd_lines = []
+
+# Iterate through the lines in the file
+#for i in range(len(lines)):
+    # Check if the line number is odd (1-based index)
+#    if (i + 1) % 2 == 1:
+ #       odd_lines.append(lines[i].strip())
+
+# Print the odd-numbered lines
+#for line in odd_lines:
+ #   print(line)
+# Open the text file for reading
+with open('tno_coord', 'r') as file:
+    lines = file.readlines()
+
+# Initialize a list to store the first two columns from each line
+columns = []
+
+# Iterate through the lines in the file
+for line in lines:
+    # Split the line into columns based on whitespace
+    columns_data = line.strip().split()
+    
+    # Take only the first two columns if available
+    if len(columns_data) >= 2:
+        first_two_columns = columns_data[:2]
+        columns.append(first_two_columns)
+
+# Print the first two columns from each line
+for column_pair in columns:
+    print("\t".join(column_pair))  # Separate the columns with a tab or another delimiter if needed
+
+
+
+# Paste it into tno_coord
+# Run divide_tno_coord.py to split the file into several files called a1**.tno.coord
+
+# Open the text file for reading
+with open('tno.txt', 'r') as file:
+    lines = file.readlines()
+
+# Define the prefix for the output files
+output_prefix = 'a'
+
+# Iterate through the lines and save them into separate files
+for i, line in enumerate(lines):
+    # Construct the output file name with a three-digit number
+    output_filename = f'{output_prefix}{i+101:03}.tno.coord'
+    
+    # Open the output file for writing
+    with open(output_filename, 'w') as output_file:
+        output_file.write(line)
+    
+    # Print the current line and the corresponding output file name
+    print(f'Saved line {i+1} to {output_filename}')
+
+
+# Create tno_phot.cl:
+for ((i=101; i<=137; i++)); do echo "#phot a$i a$i.tno.coord a$i.tno.mag"; done > tno_phot.cl
+
+# This will create a script to do phot on each file. You can also write a loop to do so. You will need to comment out all lines and keep one line and run the tno_phot.cl in IRAF for one line at a time.
+
+# Do a pdump to tno.txt
+
