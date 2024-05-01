@@ -1,0 +1,123 @@
+centerpars:
+
+(calgori=             centroid) Centering algorithm
+(cbox   =                  15.) Centering box width in scale units
+(cthresh=                   0.) Centering threshold in sigma above background
+(minsnra=                   1.) Minimum signal-to-noise ratio for centering algo
+(cmaxite=                   10) Maximum iterations for centering algorithm
+(maxshif=                   1.) Maximum center shift in scale units
+(clean  =                   no) Symmetry clean before centering
+(rclean =                   1.) Cleaning radius in scale units
+(rclip  =                   2.) Clipping radius in scale units
+(kclean =                   3.) K-sigma rejection criterion in skysigma
+(mkcente=                   no) Mark the computed center
+(mode   =                   ql)
+
+
+datapars:
+
+     (scale = 1.)             Image scale in units per pixel
+     (fwhmpsf = 4.)             FWHM of the PSF in scale units
+    (emission = yes)            Features are positive?
+       (sigma = 25.)            Standard deviation of background in counts
+     (datamin = 500.)           Minimum good data value
+     (datamax = 30000.)         Maximum good data value
+       (noise = "poisson")      Noise model
+     (ccdread = "RDNOISE")      CCD readout noise image header keyword
+        (gain = "GAIN")         CCD gain image header keyword
+   (readnoise = 0.)             CCD readout noise in electrons
+       (epadu = 1.)             Gain in electrons per count
+    (exposure = "EXPTIME")      Exposure time image header keyword
+     (airmass = "AIRMASS")      Airmass image header keyword
+      (filter = "FILTER")       Filter image header keyword
+     (obstime = "MJD-OBS")      Time of observation image header keyword
+       (itime = 1.)             Exposure time
+    (xairmass = INDEF)          Airmass
+     (ifilter = "INDEF")        Filter
+       (otime = "INDEF")        Time of observation
+        (mode = "ql")           
+
+photpars:
+
+ (weighting = "constant")     Photometric weighting scheme
+   (apertures = "5,6,7,21,25,30,35") List of aperture radii in scale units
+        (zmag = 32.422)         Zero point of magnitude scale
+     (mkapert = no)             Draw apertures on the display
+        (mode = "ql")          
+
+fitskypars:
+
+ (salgorithm = "mode")         Sky fitting algorithm
+     (annulus = 36.)            Inner radius of sky annulus in scale units
+    (dannulus = 18.)            Width of sky annulus in scale units
+    (skyvalue = 0.)             User sky value
+    (smaxiter = 10)             Maximum number of sky fitting iterations
+     (sloclip = 0.)             Lower clipping factor in percent
+     (shiclip = 0.)             Upper clipping factor in percent
+    (snreject = 50)             Maximum number of sky fitting rejection iterati
+   (sloreject = 3.)             Lower K-sigma rejection limit in sky sigma
+   (shireject = 3.)             Upper K-sigma rejection limit in sky sigma
+       (khist = 3.)             Half width of histogram in sky sigma
+     (binsize = 0.1)            Binsize of histogram in sky sigma
+      (smooth = no)             Boxcar smooth the histogram
+       (rgrow = 0.)             Region growing radius in scale units
+       (mksky = no)             Mark sky annuli on the display
+        (mode = "ql")           
+pdump:
+
+ infiles = "manual_err_19_18" Input apphot/daophot databases(s)
+       fields = "OTIME,AREA,MSKY,FLUX" Fields to be extracted
+         expr = "yes"           Boolean expression
+     (headers = no)             Print field headers?
+  (parameters = yes)            Print parameters?
+      (inlist = "")             
+        (mode = "ql")   
+
+psfmeasure:
+
+  images = "*@.list"       List of images
+      (coords = "markall")      Object coordinates
+         (wcs = "logical")      Coordinate system
+     (display = no)             Display images?
+       (frame = 1)              Display frame to use\n
+       (level = 0.5)            Measurement level (fraction or percent)
+        (size = "GFWHM")        Size to display
+        (beta = INDEF)          Moffat beta parameter
+       (scale = 1.)             Pixel scale
+      (radius = 5.)             Measurement radius (pixels)
+     (sbuffer = 5.)             Sky buffer (pixels)
+      (swidth = 5.)             Sky width (pixels)
+  (saturation = INDEF)          Saturation level
+  (ignore_sat = no)             Ignore objects with saturated pixels?
+  (iterations = 2)              Number of radius adjustment iterations
+     (xcenter = INDEF)          X field center (pixels)
+     (ycenter = INDEF)          X field center (pixels)
+     (logfile = "logfile")      Logfile\n
+    (imagecur = "relative.star") Image cursor input
+    (graphcur = "")             Graphics cursor input
+        (mode = "ql")         
+
+tvmark:
+
+
+  frame = 16              Default frame number for display
+       coords = "relative.star" Input coordinate list
+     (logfile = "")             Output log file
+     (autolog = no)             Automatically log each marking command
+    (outimage = "")             Output snapped image
+   (deletions = "")             Output coordinate deletions list 
+    (commands = "")             Image cursor: [x y wcs] key [cmd]
+        (mark = "circle")       The mark type
+       (radii = "7,35,44")      Radii in image pixels of concentric circles
+     (lengths = " ")            Lengths and width in image pixels of concentric
+        (font = "raster")       Default font
+       (color = 3)              Gray level of marks to be drawn
+       (label = yes)            Label the marked coordinates
+      (number = yes)            Number the marked coordinates
+    (nxoffset = 0)              X offset in display pixels of number
+    (nyoffset = 0)              Y offset in display pixels of number
+   (pointsize = 3)              Size of mark type point in display pixels
+      (txsize = 1)              Size of text and numbers in font units
+   (tolerance = 1.5)            Tolerance for deleting coordinates in image pix
+ (interactive = no)             Mode of use
+        (mode = "ql")        
