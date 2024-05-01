@@ -1,0 +1,41 @@
+# Reference stars are important to do absolute and relative photometry on TNOs
+
+# Pick 5-7 unsaturated stars with instrumental mag between 18-20
+# Extract their coordinates (only x and y) using imexam and ",","a" and paste in one.star
+
+# Run digiphot, daophot
+# Run phot. Following are the parameters for phot that I have used:
+
+image   =              @a.list  Input image(s)
+coords  =        relative.star  Input coordinate list(s) (default: image.coo.?)
+output  =     manual_err_19_18  Output photometry file(s) (default: image.mag.?)
+skyfile =                       Input sky value file(s)
+(plotfil=                     ) Output plot metacode file
+(datapar=                     ) Data dependent parameters
+(centerp=                     ) Centering parameters
+(fitskyp=                     ) Sky fitting parameters
+(photpar=                     ) Photometry parameters
+(interac=                   no) Interactive mode?
+(radplot=                   no) Plot the radial profiles?
+(icomman=                     ) Image cursor: [x y wcs] key [cmd]
+(gcomman=                     ) Graphics cursor: [x y wcs] key [cmd]
+(wcsin  =             )_.wcsin) The input coordinate system (logical,tv,physical
+(wcsout =            )_.wcsout) The output coordinate system (logical,tv,physica
+(cache  =             )_.cache) Cache the input image pixels in memory?
+(verify =            )_.verify) Verify critical phot parameters?
+(update =            )_.update) Update critical phot parameters?
+(verbose=           )_.verbose) Print phot messages?
+(graphic=          )_.graphics) Graphics device
+(display=           )_.display) Display device
+(mode   =                   ql)
+
+# You can change these three inputs after typing phot and pressing enter
+# Save the file as .mag. For example, star1.mag
+
+# Run pdump to extract OTIME,RAPERT,MAG,MERR,XAIRMASS,FLUX,SUM,PHOTZP etc.
+# I have used a formula to calulate errors manually so for that, run Pdump by running epar pdump and changing fields to OTIME, AREA, MSKY, FLUX.
+
+pdump > star1.txt 
+pdump > star1.xlsx
+
+# You will need to add the header later.
