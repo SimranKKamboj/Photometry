@@ -1,0 +1,21 @@
+# These commands should be run in the terminal and IRAF under the directory where images are stored
+
+# Create a list called a.list with a1**.fits replacing 1(30) with the number of images
+
+seq -w 101 137 | awk '{print "a" $1 ".fits"}' > a.list
+
+# Go to IRAF, display first frame and select 18-20 stars over the whole CCD (try to cover as much area as possible). Do an imexam and press "," or "a" on keyboard. This shoudl return the coordinates of the stars plus a bunch of extra information.
+# Note: if you want to exit imexam for some reason, press "q" instead of command/control+F4.
+
+# copy the list to a file and extract the first two columns (x and y coordinates of the star)
+awk '{print $1, $2}' your_file.txt > aligncord.txt
+
+# Run imalign in IRAF
+input: @raw.list
+reference: raw101
+coords: aligncord.txt
+output: @a.list
+
+# This will align the images 
+
+
