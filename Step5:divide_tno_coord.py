@@ -1,5 +1,5 @@
 # Open the text file for reading
-with open('tno.txt', 'r') as file:
+with open('tno_coord.txt', 'r') as file:
     lines = file.readlines()
 
 # Define the prefix for the output files
