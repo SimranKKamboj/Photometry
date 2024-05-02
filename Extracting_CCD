@@ -40,7 +40,6 @@ imcopy 27783p.fits[4][-*,-*] raw103
 imcopy 27784p.fits[4][-*,-*] raw104
 
 # Run extraction.cl in IRAF
-
-
+cl > extraction.cl
 
 
