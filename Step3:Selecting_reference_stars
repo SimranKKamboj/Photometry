@@ -1,6 +1,6 @@
 # Reference stars are important to do absolute and relative photometry on TNOs
 
-# Pick 5-7 unsaturated stars with instrumental mag between 18-20
+# Pick 5-7 unsaturated stars with instrumental mag between 18-20 (~11-12 on IRAF)
 # Extract their coordinates (only x and y) using imexam and ",","a" and paste in one.star
 
 # Run digiphot, daophot
