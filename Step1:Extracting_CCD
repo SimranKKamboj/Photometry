@@ -17,13 +17,13 @@ seq -w 101 130 | awk '{print "raw" $1 ".fits"}' > raw.list
 
 counter=101
 while IFS= read -r file; do
-  echo "imcopy $file[4][-*,-*] raw$counter**" >> extraction.cl
+  echo "imcopy $file[4][-*,-*] raw$counter" >> extraction.cl
   ((counter++))
 done < <(ls)
 
 # Optionally, you can specify a folder path:
 # while IFS= read -r file; do
-#   echo "imcopy $file[4][-*,-*] raw$counter**" >> extraction.cl
+#   echo "imcopy $file[4][-*,-*] raw$counter" >> extraction.cl
 #   ((counter++))
 # done < <(ls /path/to/your/folder)
 
