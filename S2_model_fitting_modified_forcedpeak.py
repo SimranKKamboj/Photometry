@@ -46,29 +46,33 @@ def analyze_light_curve(time, mag, magerr):
     plt.grid(True)
     plt.scatter(1/frequency[peaks], power[peaks], color='red', marker='x', label='Peaks')
 
-    # Print and annotate the first 12 peaks
-    print("First 12 peaks:")
-    for i, period in enumerate(1 / frequency[peaks][:12]):
+     # Print and annotate the first 12 peaks
+    print("First 30 peaks:")
+    for i, period in enumerate(1 / frequency[peaks][:30]):
         label = f'P{i+1} ({period:.2f})'  # Include period information in the label
         print(f"{label}: Lomb-Scargle Power = {power[peaks[i]]:.4f}")
         plt.annotate(label, xy=(period, power[peaks[i]]), xytext=(period, power[peaks[i]] + 0.06),
                      arrowprops=dict(facecolor='black', arrowstyle='->', mutation_scale=10), fontsize=8)
 
-    # Print and annotate the best peak
-    best_peak = None
+    # Find the best peak based on power
+    best_peak_index = None
+    best_peak_power = -float('inf')
     for peak in peaks:
         period = 1 / frequency[peak]
-        if 3 < period < 60:
-            best_peak = peak
-            break
-    if best_peak is not None:
-        best_period = 1 / frequency[best_peak]
-        best_power = power[best_peak]
+        if 3 < period < 50:  # Adjust the range if needed
+            if power[peak] > best_peak_power:
+                best_peak_index = peak
+                best_peak_power = power[peak]
+
+# If a best peak is found, print and annotate it
+    if best_peak_index is not None:
+        best_period = 1 / frequency[best_peak_index]
+        best_power = power[best_peak_index]
         print(f"Best Peak: P ({best_period:.2f}), Lomb-Scargle Power = {best_power:.4f}")
         plt.annotate("Best Peak", xy=(best_period, best_power), xytext=(best_period+0.5, best_power - 0.1),
-                     arrowprops=dict(facecolor='green', arrowstyle='->', mutation_scale=10), color='green', fontsize=8)
+                 arrowprops=dict(facecolor='green', arrowstyle='->', mutation_scale=10), color='green', fontsize=8)
     else:
-        print("No peak found with period between 3 and 60")
+        print("No peak found with period between 3 and 5")
         
     plt.legend()
     plt.show()
