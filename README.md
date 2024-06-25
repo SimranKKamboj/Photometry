@@ -30,7 +30,7 @@ star_pollution = list(range(12,33))  # Frames where the TNO aperture gets pollut
 bad_frames = [56,83,86] # Frames that are noisy
 rows_to_skip = indef+cosmicrays+star_pollution+bad_frames
 
-# define the data interval so here these three present the otime range for three nightd
+# define the data interval so here these three present the otime range for three nights
 intervals = [
     (0, 6),(92,100),(116,124)
 ]
