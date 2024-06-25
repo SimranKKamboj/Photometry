@@ -44,3 +44,15 @@ analyze_light_curve(time, delta_mag, merr)
 
 ```
 
+One can use any pipeline provided based on the task requirement. Some of the pipelines I have are:
+- Single sine curve model
+- Single sine curve model with forced period range on the periodogram
+- Single sine curve model with forced period range on the periodogram and a predictor for future data
+- Single sine curve model with forced period range on the periodogram and a single and double phase fold (latest and prefered model)
+- Double sine curve model
+- Double sine curve model with forced period range on the periodogram
+- Double sine curve model with forced period range on the periodogram and a predictor for future data
+- Double sine curve model with forced period range on the periodogram and a single and double phase fold (latest and prefered model)
+
+
+This repository is still under editing so please contact me at simran@phas.ubc.ca if you need the latest version of if you have any questions. Thank you!
