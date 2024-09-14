@@ -55,4 +55,4 @@ One can use any pipeline provided based on the task requirement. Some of the pip
 - Double sine curve model with forced period range on the periodogram and a single and double phase fold (latest and prefered model)
 
 
-This repository is still under editing so please contact me at simran@phas.ubc.ca if you need the latest version of if you have any questions. Thank you!
+This repository is still under editing so please contact me at simran@phas.ubc.ca if you need the latest version or if you have any questions. Thank you!
